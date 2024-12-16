@@ -1,0 +1,238 @@
+<div data-section-id="{{ section.id }}" data-section-type="section-info-v2" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %} {% if section.settings.sections_layout == "dark" %}background: {{section.settings.sections_bg_color}};{% endif %}">
+  <div class="section-info-v2 mt-all ">
+    <div class="container container-v2">
+      <div class="text-center">
+        {% if section.settings.info-v1-title != blank %}
+        <div class="title_heading">{{section.settings.info-v1-title}}</div>
+        {% endif %}
+
+        {% if section.settings.info-v1-des != blank %}
+        <div class="info-v1-des mt-4">{{section.settings.info-v1-des}}</div>
+        {% endif %}
+      </div>
+      <div class="row mini-content">
+        <div class="col-lg-3 col-12 order-lg-1 order-2 order-md-2 col-md-6 text-lg-left text-md-center pt-lg-5 text-center">
+
+          {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+          {% if block.type == "Info" %}
+          {% if block.settings.mini-title != blank %}
+          <div class="mini-title">
+            {% if block.settings.img-content != blank %}
+            <img src="{{block.settings.img-content|img_url:'master'}}" alt="banner" />
+            {% else %}
+            <img src="//placehold.it/27x27">
+            {% endif %}{{block.settings.mini-title}}</div>
+          {% endif %}
+
+          {% if block.settings.mini-des !=blank  %}
+          <div class="mini-des">
+            {{ block.settings.mini-des }}
+          </div>
+          {% endif %}
+
+
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+
+        </div>
+        <div class="col-lg-6 order-md-1 order-1 order-lg-2 col-md-12 text-md-center col-12 pb-4  pb-lg-0">
+          <a href="{{section.settings.url_banner}}" class="adv-thumb-link">
+            {% if section.settings.img-banner-info != blank %}
+            <img data-src="{{section.settings.img-banner-info|img_url:'master'}}" class="lazyload img-fluid" alt="banner" />
+            {% else %}
+            <img data-src="//placehold.it/514x572" class="lazyload img-fluid" alt>
+            {% endif %}
+          </a>
+        </div>
+        <div class="col-lg-3 text-lg-right order-md-3 order-3 order-lg-3 col-md-6 text-md-center pt-lg-5 col-12 text-center">
+
+          {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+          {% if block.type == "Info-2" %}
+          {% if block.settings.mini-title-right != blank %}
+          <div class="mini-title">
+
+            {{block.settings.mini-title-right}}
+            {% if block.settings.img-content-2 != blank %}
+            <img class="pl-3" src="{{block.settings.img-content-2|img_url:'master'}}" alt="banner" />
+            {% else %}
+            <img class="pl-3" src="//placehold.it/27x27">
+            {% endif %}
+
+          </div>
+          {% endif %}
+
+          {% if block.settings.mini-des-right !=blank  %}
+          <div class="mini-des">
+            {{ block.settings.mini-des-right }}
+          </div>
+          {% endif %}
+
+
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "SECTION INFO V2",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Space"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "info-v1-title",
+      "label": "Title Info-v1",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "text",
+      "id": "info-v1-des",
+      "label": "Description Info-v1",
+      "default": "The fact of the matter is that you really know something's organic when you find bugs! they obviously wouldn't have made it that far in a non-organic growing environment, so better than any certification or seal on a package, the presence of creatures let you know the plant was healthy and."
+    },
+    {
+      "type": "image_picker",
+      "id": "img-banner-info",
+      "info": "514 x 572px recommended",
+      "label": "Image"
+    },
+  	{
+      "type": "url",
+      "id": "url_banner",
+      "label": "URL banner Info",
+      "default": "/collections/all"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Info",
+      "name": "Infomation-left",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img-content",
+          "info": "27 x 27px recommended",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "mini-title",
+          "label": "Mini Title",
+          "default": "Fresh"
+        },
+        {
+          "type": "text",
+          "id": "mini-des",
+          "label": "Mini Description",
+          "default": "This is example content"
+        }
+      ]
+    },
+    {
+      "type": "Info-2",
+      "name": "Infomation-right",
+      "settings": [
+        {
+          "type": "url",
+          "id": "banner_url",
+          "label": "URL",
+          "default": "/collections/all"
+        },
+        {
+          "type": "image_picker",
+          "id": "img-content-2",
+          "info": "27 x 27px recommended",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "mini-title-right",
+          "label": "Mini Title Right",
+          "default": "Fresh"
+        },
+        {
+          "type": "text",
+          "id": "mini-des-right",
+          "label": "Mini Description Right",
+          "default": "This is example content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "INFO V2",
+      "category": "HOME",
+      "blocks": [
+        {
+          "type": "Info",
+          "settings": {
+            
+          }
+        },
+        {
+          "type": "Info",
+          "settings": {
+            
+          }
+        },
+        {
+          "type": "Info",
+          "settings": {
+            
+          }
+        },
+        {
+          "type": "Info-2",
+          "settings": {
+            
+          }
+        },
+        {
+          "type": "Info-2",
+          "settings": {
+            
+          }
+        },
+        {
+          "type": "Info-2",
+          "settings": {
+            
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
